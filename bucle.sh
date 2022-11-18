@@ -7,6 +7,7 @@ do
 	usdv=$(tail -1 ventausd.txt)
 
 	usd=$(curl -X GET 127.0.0.1:5000/usd |./jq '.venta') 
+	
 	if [[$usdv -eq $usd ]];then
 		sleep 5
 	else
