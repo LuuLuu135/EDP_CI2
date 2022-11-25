@@ -1,33 +1,28 @@
 #!/bin/bash 
 
-#Guardo solo el numero de venta
-#venta=$(curl -X GET 127.0.0.1:5000/usd |./jq '.venta')
+#touch sync.txt
 
-#Guardo solo el numero de Compra
-#compra=$(curl -X GET 127.0.0.1:5000/usd |./jq '.compra')
-
-echo $(date +%Y-%m-%d_%H:%M) , $compra , $venta >> historico.txt
-
+fechaincial=$(stat -c %y sync.txt)
 
 while true
-do
-	curl -X GET 127.0.0.1:5000/usd 2>/dev/null | ./jq '.compra' > compra.txt
+do	
+
 	
-	comprar=$(tail -1 compra.txt)
+	sleep 1
 
-	curl -X GET 127.0.0.1:5000/usd 2>/dev/null | ./jq '.venta' > venta.txt
-         
-	vender=$(tail -1 venta.txt)
+	modificacion=$(stat -c %y sync.txt)
 	
-	echo $(date  +%Y-%m-%d_%H:%M) , $compra , $venta > sync.txt
+	if [[ "$fechaincial" != "$modificacion"  ]] ;then
 
-	if [[ $compra -ne $comprar || $venta -ne $vender ]];then
+		#Guardo solo el numero de venta
+		venta=$(curl -X GET 127.0.0.1:5000/usd 2>/dev/null |./jq '.venta')
 
-		echo $(date +%Y-%m-%d_%H:%M) , $compra , $venta >> sync.txt
+		#Guardo solo el numero de Compra
+		compra=$(curl -X GET 127.0.0.1:5000/usd 2>/dev/null |./jq '.compra')
 
-	else
-		sleep 5
-	
+		echo $(date +%Y-%m-%d_%H:%M) , $compra , $venta >> historico.txt
+		
+		fechaincial=$modificacion
 	fi	
 
 done
