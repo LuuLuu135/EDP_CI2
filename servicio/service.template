@@ -1,0 +1,9 @@
+[Unit]
+Description = Servicio para TP
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "echo 1 > #reemplazame"
+
+[Install]
+WantedBy=multi-user.target
