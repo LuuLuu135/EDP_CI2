@@ -2,3 +2,5 @@
 algo
 casa
 rari
+rareza
+cansancio
