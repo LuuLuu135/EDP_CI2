@@ -15,4 +15,4 @@ services:
         hostname: script
         restart: always
         volumes:
-          - ./script:/app/syncc
+          - ./script/syncc:/app/sync
