@@ -15,10 +15,10 @@ do
 	if [[ "$fechaincial" != "$modificacion"  ]] ;then
 
 		#Guardo solo el numero de venta
-		venta=$(curl -X GET 127.0.0.1:5000/usd 2>/dev/null |jq .venta)
+		venta=$(curl -X GET web_server:5000/usd 2>/dev/null |jq .venta)
 
 		#Guardo solo el numero de Compra
-		compra=$(curl -X GET 127.0.0.1:5000/usd 2>/dev/null |jq .compra)
+		compra=$(curl -X GET web_server:5000/usd 2>/dev/null |jq .compra)
 
 		echo $(date +%Y-%m-%d_%H:%M) , $compra , $venta >> syncc/historico.txt
 		

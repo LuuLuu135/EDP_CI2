@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 services:
     web_server:
         hostname: web_server
@@ -15,4 +15,4 @@ services:
         hostname: script
         restart: always
         volumes:
-          - ./script/syncc:/app/sync
+          - ./script/syncc:/app/syncc
