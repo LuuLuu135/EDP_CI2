@@ -3,7 +3,7 @@ Description=Servicio para TP
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c "echo 1 > ED_CI2/script/sync.txt"
+ExecStart=/bin/bash -c "echo 1 > /home/leonel/EDP_CI2/script/syncc/sync.txt"
 
 [Install]
 WantedBy=multi-user.target
